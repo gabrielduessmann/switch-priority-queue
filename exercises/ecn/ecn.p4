@@ -132,7 +132,7 @@ control MyEgress(inout headers hdr,
 
     /*
      * Make priority is packet comes from s1 (ip: 10.0.1.1)
-     *
+     * 
      */
      action set_priority() {
         if (hdr.ethernet.srcAddr == 0x0a000101 || hdr.ipv4.ecn != 1) {
