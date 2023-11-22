@@ -28,7 +28,7 @@ def main():
     addr = socket.gethostbyname(sys.argv[1])
     iface = get_if()
 
-    pkt = Ether(src=get_if_hwaddr(iface), dst="ff:ff:ff:ff:ff:ff") / IP(dst=addr, tos=2) / UDP(dport=4321, sport=1234) / sys.argv[2]
+    pkt = Ether(src=get_if_hwaddr(iface), dst="ff:ff:ff:ff:ff:ff") / IP(dst=addr, tos=1) / UDP(dport=4321, sport=1234) / sys.argv[2]
     pkt.show2()
     #hexdump(pkt)
     try:

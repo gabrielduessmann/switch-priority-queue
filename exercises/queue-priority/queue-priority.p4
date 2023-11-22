@@ -132,7 +132,7 @@ control MyEgress(inout headers hdr,
      *
      */
      action set_priority() {
-        if (hdr.ipv4.ecn == 2) {
+        if (hdr.ipv4.ecn == 1) {
           standard_metadata.priority = (bit<3>)7;
         } else {
           standard_metadata.priority = (bit<3>)0;
