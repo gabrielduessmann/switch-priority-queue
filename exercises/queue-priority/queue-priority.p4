@@ -126,16 +126,13 @@ control MyIngress(inout headers hdr,
 control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
-    action mark_ecn() {
-        hdr.ipv4.ecn = 3;
-    }
 
     /*
-     * Make priority is packet comes from s1 (ip: 10.0.1.1)
-     * 
+     * Set packet priority if flag is active (ipv4.ecn == 2)
+     *
      */
      action set_priority() {
-        if (hdr.ethernet.srcAddr == 0x0a000101 || hdr.ipv4.ecn != 1) {
+        if (hdr.ipv4.ecn == 2) {
           standard_metadata.priority = (bit<3>)7;
         } else {
           standard_metadata.priority = (bit<3>)0;
@@ -144,15 +141,8 @@ control MyEgress(inout headers hdr,
 
     apply {
         set_priority();
-        if (hdr.ipv4.ecn == 1 || hdr.ipv4.ecn == 2){
-            if (standard_metadata.enq_qdepth >= ECN_THRESHOLD){
-                mark_ecn();
-            }
-        }
+
         hdr.ipv4.ttl = (bit<8>)standard_metadata.priority;
-
-        // standard_metadata.deq_timedelta -> time the packet spent in the queue
-
     }
 }
 

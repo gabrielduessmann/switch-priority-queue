@@ -180,8 +180,6 @@ def insertTableEntry(sw, flow, p4info_helper):
     action_params = flow['action_params']
     priority = flow.get('priority')  # None if not found
 
-    print("table_entry -> priority: ", priority)
-
     table_entry = p4info_helper.buildTableEntry(
         table_name=table_name,
         match_fields=match_fields,

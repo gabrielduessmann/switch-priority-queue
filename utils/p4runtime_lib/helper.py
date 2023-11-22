@@ -188,7 +188,7 @@ class P4InfoHelper(object):
                     self.get_action_param_pb(action_name, field_name, value)
                     for field_name, value in action_params.items()
                 ])
-        print("helper.py -> def buildTableEntry")
+
         return table_entry
 
     def buildMulticastGroupEntry(self, multicast_group_id, replicas):
