@@ -128,7 +128,7 @@ control MyEgress(inout headers hdr,
                  inout standard_metadata_t standard_metadata) {
 
     /*
-     * Set packet priority if flag is active (ipv4.ecn == 2)
+     * Set packet priority if flag is active (ipv4.ecn == 1)
      *
      */
      action set_priority() {
